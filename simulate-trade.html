@@ -4,117 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>模擬股票交易</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        let portfolio = {
-            AAPL: { shares: 1, buyPrice: 100, currentPrice: 100 },
-        };
-
-        function updatePortfolio() {
-            const portfolioSection = document.getElementById("portfolio");
-            portfolioSection.innerHTML = "";
-
-            for (const [ticker, details] of Object.entries(portfolio)) {
-                const gainLoss = ((details.currentPrice - details.buyPrice) * details.shares).toFixed(2);
-                portfolioSection.innerHTML += `
-                    <div class="stock">
-                        <h4>${ticker}</h4>
-                        <p>持有股數：${details.shares}</p>
-                        <p>買入價格：$${details.buyPrice}</p>
-                        <p>目前價格：$${details.currentPrice}</p>
-                        <p>盈虧：$${gainLoss}</p>
-                    </div>
-                `;
-            }
-        }
-
-        function observeStock() {
-            const ticker = "AAPL";
-            const priceChange = (Math.random() * 10 - 5).toFixed(2);
-            portfolio[ticker].currentPrice = (portfolio[ticker].currentPrice + parseFloat(priceChange)).toFixed(2);
-            updatePortfolio();
-            alert(`股票 ${ticker} 的價格波動為：$${priceChange}`);
-        }
-
-        function setStopLoss() {
-            const ticker = "AAPL";
-            const stopLoss = parseFloat(prompt("設置止損價格："));
-            if (stopLoss > 0) {
-                alert(`您已為 ${ticker} 設置止損價格：$${stopLoss}`);
-            } else {
-                alert("止損價格設置無效！");
-            }
-        }
-
-        function setTakeProfit() {
-            const ticker = "AAPL";
-            const takeProfit = parseFloat(prompt("設置止盈價格："));
-            if (takeProfit > 0) {
-                alert(`您已為 ${ticker} 設置止盈價格：$${takeProfit}`);
-            } else {
-                alert("止盈價格設置無效！");
-            }
-        }
-
-        function buyMoreShares() {
-            const ticker = "AAPL";
-            const sharesToBuy = parseInt(prompt("輸入您要購買的股數："), 10);
-            if (sharesToBuy > 0) {
-                const totalCost = sharesToBuy * portfolio[ticker].currentPrice;
-                portfolio[ticker].shares += sharesToBuy;
-                portfolio[ticker].buyPrice = ((portfolio[ticker].buyPrice * portfolio[ticker].shares) + totalCost) / (portfolio[ticker].shares + sharesToBuy);
-                updatePortfolio();
-                alert(`您已購買 ${sharesToBuy} 股 ${ticker}，花費總金額：$${totalCost.toFixed(2)}`);
-            } else {
-                alert("無效的購買數量！");
-            }
-        }
-
-        function sellShares() {
-            const ticker = "AAPL";
-            const sharesToSell = parseInt(prompt("輸入您要賣出的股數："), 10);
-            if (sharesToSell > 0 && sharesToSell <= portfolio[ticker].shares) {
-                portfolio[ticker].shares -= sharesToSell;
-                const totalEarnings = sharesToSell * portfolio[ticker].currentPrice;
-                updatePortfolio();
-                alert(`您已賣出 ${sharesToSell} 股 ${ticker}，收入總金額：$${totalEarnings.toFixed(2)}`);
-            } else {
-                alert("無效的賣出數量！");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", updatePortfolio);
-    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/trade.js" defer></script>
+    <script src="js/chart.js" defer></script>
 </head>
 <body>
     <header>
         <h1>模擬股票交易</h1>
-        <p>學習如何操作股票交易，管理您的投資組合。</p>
+        <p id="account-balance">可用資金：$10000.00</p>
     </header>
 
     <main>
         <section>
-            <h2>模擬交易操作</h2>
-            <p>您已成功模擬購買 1 股 AAPL，每股價格 $100，總金額為 $100.00。</p>
-            <p>接下來，您可以選擇以下操作：</p>
-            <ul>
-                <li><button onclick="updatePortfolio()">檢查您的持倉</button></li>
-                <li><button onclick="observeStock()">觀察股票的漲跌情況</button></li>
-                <li><button onclick="setStopLoss()">設置止損計劃</button></li>
-                <li><button onclick="setTakeProfit()">設置止盈計劃</button></li>
-                <li><button onclick="buyMoreShares()">追加購買股票</button></li>
-                <li><button onclick="sellShares()">賣出股票</button></li>
-            </ul>
+            <h2>操作區域</h2>
+            <button onclick="buyStockWithAccount('AAPL')">購買 AAPL</button>
+            <button onclick="buyStockWithAccount('TSLA')">購買 TSLA</button>
+            <button onclick="drawStockChart('AAPL')">查看 AAPL 圖表</button>
         </section>
 
         <section>
-            <h2>您的持倉</h2>
+            <h2>持倉資訊</h2>
             <div id="portfolio"></div>
+        </section>
+
+        <section>
+            <h2>交易日誌</h2>
+            <div id="transaction-log"></div>
+        </section>
+
+        <section>
+            <h2>技術圖表</h2>
+            <canvas id="stockChart" width="400" height="200"></canvas>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 股市模擬交易平台</p>
+        <p>&copy; 2024 模擬股票交易平台</p>
     </footer>
 </body>
 </html>
