@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>股市學習與推薦平台</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -23,9 +25,7 @@
         <!-- 股市圖片區 -->
         <section id="market-trends">
             <h2>股市圖片</h2>
-            <div id="chart-container">
-                <p>即將展示股市走勢圖...</p>
-            </div>
+            <canvas id="chart" width="400" height="200"></canvas>
         </section>
 
         <!-- 券商推薦區 -->
