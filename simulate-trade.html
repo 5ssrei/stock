@@ -3,44 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>模擬股票交易</title>
+    <title>模擬交易</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/trade.js" defer></script>
-    <script src="js/chart.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>模擬股票交易</h1>
-        <p id="account-balance">可用資金：$10000.00</p>
+        <h1>模擬交易</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="beginner.html">學習區</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <section>
-            <h2>操作區域</h2>
-            <button onclick="buyStockWithAccount('AAPL')">購買 AAPL</button>
-            <button onclick="buyStockWithAccount('TSLA')">購買 TSLA</button>
-            <button onclick="drawStockChart('AAPL')">查看 AAPL 圖表</button>
+            <h2>操作模擬</h2>
+            <p>選擇要進行的操作：</p>
+            <button onclick="buyStock('AAPL')">模擬購買 AAPL</button>
+            <button onclick="sellStock('AAPL')">模擬賣出 AAPL</button>
         </section>
 
         <section>
-            <h2>持倉資訊</h2>
-            <div id="portfolio"></div>
-        </section>
-
-        <section>
-            <h2>交易日誌</h2>
-            <div id="transaction-log"></div>
-        </section>
-
-        <section>
-            <h2>技術圖表</h2>
-            <canvas id="stockChart" width="400" height="200"></canvas>
+            <h2>投資組合</h2>
+            <div id="portfolio">
+                <p>目前的持倉資訊將顯示於此。</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 模擬股票交易平台</p>
+        <p>&copy; 2024 模擬交易平台</p>
     </footer>
 </body>
 </html>
