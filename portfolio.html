@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資產組合模擬</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/portfolio.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>資產組合模擬</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="simulate-trade.html">模擬交易</a></li>
+                <li><a href="news.html">股票新聞</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="portfolio-simulation">
+            <h2>模擬資產組合</h2>
+            <form id="portfolio-form">
+                <div>
+                    <label for="stock-percentage">股票比例 (%)：</label>
+                    <input type="number" id="stock-percentage" value="50" min="0" max="100">
+                </div>
+                <div>
+                    <label for="etf-percentage">ETF 比例 (%)：</label>
+                    <input type="number" id="etf-percentage" value="30" min="0" max="100">
+                </div>
+                <div>
+                    <label for="bond-percentage">債券比例 (%)：</label>
+                    <input type="number" id="bond-percentage" value="20" min="0" max="100">
+                </div>
+                <button type="button" onclick="simulatePortfolio()">模擬</button>
+            </form>
+            <div id="simulation-result">
+                <h3>模擬結果</h3>
+                <p>回報率：<span id="portfolio-return">-</span>%</p>
+                <p>風險：<span id="portfolio-risk">-</span>%</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>資產配置建議</h2>
+            <p>分散投資有助於降低投資風險並實現穩健回報。</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 資產組合模擬平台</p>
+    </footer>
+</body>
+</html>
