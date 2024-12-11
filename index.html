@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>股市學習與推薦平台</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -16,6 +15,9 @@
                 <li><a href="#market-trends">股市圖片</a></li>
                 <li><a href="#broker-recommendations">券商推薦</a></li>
                 <li><a href="#learning-hub">學習區</a></li>
+                <li><a href="simulate-trade.html">模擬交易</a></li>
+                <li><a href="competition.html">模擬比賽</a></li>
+                <li><a href="news.html">股票新聞</a></li>
                 <li><a href="#about">關於我們</a></li>
             </ul>
         </nav>
@@ -26,6 +28,45 @@
         <section id="market-trends">
             <h2>股市圖片</h2>
             <canvas id="chart" width="400" height="200"></canvas>
+            <script>
+                // 模擬股市數據圖表
+                const ctx = document.getElementById('chart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: '模擬股市走勢',
+                            data: [120, 150, 170, 130, 190, 200],
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2,
+                            fill: false,
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: '月份'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: '股價 (USD)'
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
         </section>
 
         <!-- 券商推薦區 -->
@@ -68,6 +109,16 @@
                 <p>掌握投資風險控制的技巧。</p>
                 <a href="risk-management.html">開始學習</a>
             </div>
+        </section>
+
+        <!-- 新增的功能區域 -->
+        <section>
+            <h2>模擬功能</h2>
+            <ul>
+                <li><a href="simulate-trade.html">模擬股票交易</a></li>
+                <li><a href="competition.html">模擬比賽</a></li>
+                <li><a href="news.html">查看股票新聞</a></li>
+            </ul>
         </section>
     </main>
 
