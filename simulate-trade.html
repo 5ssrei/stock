@@ -12,6 +12,25 @@
             const total = quantity * price;
             document.getElementById("total").textContent = `總金額：$${total.toFixed(2)}`;
         }
+
+        function submitOrder() {
+            const stock = document.getElementById("stock").value;
+            const quantity = document.getElementById("quantity").value;
+            const price = document.getElementById("price").value;
+            const total = quantity * price;
+
+            alert(`已成功模擬下單！\n股票：${stock}\n數量：${quantity}股\n價格：$${price}/股\n總金額：$${total.toFixed(2)}`);
+            document.getElementById("order-summary").innerHTML = `
+                <h3>交易完成</h3>
+                <p>您已成功模擬購買 <strong>${quantity} 股 ${stock}</strong>，每股價格 $${price}，總金額為 $${total.toFixed(2)}。</p>
+                <p>下一步，您可以：</p>
+                <ul>
+                    <li>檢查您的持倉。</li>
+                    <li>觀察該股票的漲跌情況。</li>
+                    <li>制定止損和止盈計劃。</li>
+                </ul>
+            `;
+        }
     </script>
 </head>
 <body>
@@ -21,6 +40,7 @@
             <ul>
                 <li><a href="index.html">回首頁</a></li>
                 <li><a href="beginner.html">基礎知識</a></li>
+                <li><a href="chart-tutorial.html">如何看股市圖</a></li>
             </ul>
         </nav>
     </header>
@@ -28,7 +48,17 @@
     <main>
         <section>
             <h2>模擬下單操作</h2>
-            <p>按照以下步驟完成模擬交易：</p>
+            <p>以下是模擬下單的完整教學流程：</p>
+            <ol>
+                <li><strong>選擇股票：</strong>選擇您感興趣的股票，例如蘋果（AAPL）。</li>
+                <li><strong>設置購買數量：</strong>輸入想要購買的股數，注意不要超過可用資金範圍。</li>
+                <li><strong>設置價格：</strong>選擇合適的價格，您可以使用市價（當前市場價格）或限價（自定義價格）。</li>
+                <li><strong>確認訂單：</strong>檢查訂單詳情，模擬交易完成。</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>模擬操作</h2>
             <form oninput="calculateTotal()">
                 <label for="stock">選擇股票：</label>
                 <select id="stock">
@@ -44,8 +74,12 @@
                 <input type="number" id="price" min="0.01" step="0.01" value="100">
                 <br>
                 <p id="total">總金額：$100.00</p>
-                <button type="button" onclick="alert('模擬下單成功！')">提交下單</button>
+                <button type="button" onclick="submitOrder()">提交下單</button>
             </form>
+        </section>
+
+        <section id="order-summary">
+            <!-- 下單結果將顯示在這裡 -->
         </section>
     </main>
 
