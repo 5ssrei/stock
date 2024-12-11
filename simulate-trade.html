@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模擬下單教學 - 股市學習區</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function calculateTotal() {
+            const quantity = document.getElementById("quantity").value;
+            const price = document.getElementById("price").value;
+            const total = quantity * price;
+            document.getElementById("total").textContent = `總金額：$${total.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>模擬下單教學</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">回首頁</a></li>
+                <li><a href="beginner.html">基礎知識</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>模擬下單操作</h2>
+            <p>按照以下步驟完成模擬交易：</p>
+            <form oninput="calculateTotal()">
+                <label for="stock">選擇股票：</label>
+                <select id="stock">
+                    <option value="AAPL">蘋果 (AAPL)</option>
+                    <option value="TSLA">特斯拉 (TSLA)</option>
+                    <option value="GOOGL">谷歌 (GOOGL)</option>
+                </select>
+                <br>
+                <label for="quantity">購買數量：</label>
+                <input type="number" id="quantity" min="1" value="1">
+                <br>
+                <label for="price">每股價格：</label>
+                <input type="number" id="price" min="0.01" step="0.01" value="100">
+                <br>
+                <p id="total">總金額：$100.00</p>
+                <button type="button" onclick="alert('模擬下單成功！')">提交下單</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 股市學習與推薦平台</p>
+    </footer>
+</body>
+</html>
